@@ -1,0 +1,19 @@
+Use Case
+
+We are trying to create an interactive web application to help high school students prepare for tests.  It should be a dynamic, quiz app
+where I can upload a set of questions (along with the answer and an explanation). I want you to show the questions as part of a quiz, allowing
+the student to select an answer, show them if they got it right, and then show the explanation if they got it wrong.  Also track their
+results.
+
+The User Persona
+
+The main consumer here is a student, generally a high school student, studying an advanced topic.
+
+Details
+* The questions will all be multiple choice but can have a variable number of options based on the input.
+* An input file should be provided, you need to design a format for it, to indicate the question, answer options, correct answer, and explanation.
+* The app can run locally in a web browser.
+* there should be a simple command to start it and stop it.
+* To make it simple for the student, we'll paste the input file into the app through some configuration UI.
+* Note that the student may want multiple input files so they should tracked as separate tests.
+* Use a modern look and feel, maybe like gmail or some friendly consumer app. It should be light colored and clean.  Create a logo called "MyQuiz" for it.  

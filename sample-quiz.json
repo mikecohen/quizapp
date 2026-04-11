@@ -1,0 +1,28 @@
+{
+  "title": "Cell Biology Review",
+  "description": "A short practice set covering membranes, ATP, and organelles.",
+  "questions": [
+    {
+      "prompt": "Which organelle is primarily responsible for producing ATP in eukaryotic cells?",
+      "options": ["Golgi apparatus", "Mitochondrion", "Ribosome", "Lysosome"],
+      "correctIndex": 1,
+      "explanation": "Mitochondria carry out cellular respiration, which produces most of the cell's ATP."
+    },
+    {
+      "prompt": "What is the main function of the cell membrane?",
+      "options": [
+        "To store DNA",
+        "To package proteins",
+        "To control what enters and leaves the cell"
+      ],
+      "correctIndex": 2,
+      "explanation": "The cell membrane is selectively permeable, so it regulates movement into and out of the cell."
+    },
+    {
+      "prompt": "Which macromolecule is the main component of cell membranes?",
+      "options": ["Phospholipids", "Nucleic acids", "Monosaccharides", "Triglycerides"],
+      "correctIndex": 0,
+      "explanation": "Cell membranes are built from a phospholipid bilayer with embedded proteins."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+.DS_Store
+.myquiz.log
+.myquiz.pid
+node_modules/
+dist/
+build/

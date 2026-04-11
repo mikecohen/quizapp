@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyQuiz</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <span class="brand-bubble bubble-a"></span>
+            <span class="brand-bubble bubble-b"></span>
+            <span class="brand-bubble bubble-c"></span>
+          </div>
+          <div>
+            <p class="eyebrow">Study smarter</p>
+            <h1>MyQuiz</h1>
+          </div>
+        </div>
+
+        <nav class="topnav" aria-label="Primary">
+          <button id="navHomeButton" class="topnav-link active" type="button">Home</button>
+          <button id="navTestsButton" class="topnav-link" type="button">Tests</button>
+        </nav>
+      </header>
+
+      <main class="page-shell">
+        <section id="homeView" class="page-view">
+          <section class="dashboard-grid">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-label">Recent Results</p>
+                  <h3>Latest activity</h3>
+                </div>
+              </div>
+              <div id="recentResultsEmpty" class="empty-state">
+                <p>No quiz attempts yet. Start a saved test to see recent scores here.</p>
+              </div>
+              <div id="recentResultsList" class="recent-results-list"></div>
+            </article>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-label">Available Tests</p>
+                <h3>Your saved tests</h3>
+              </div>
+              <div class="inline-actions">
+                <button id="homeNewTestButton" class="primary-button" type="button">New test</button>
+                <button id="homeManageTestsButton" class="ghost-button" type="button">Go to tests</button>
+              </div>
+            </div>
+            <div id="homeTestsEmpty" class="empty-state">
+              <p>No tests saved yet. Create a new test to get started.</p>
+            </div>
+            <div id="homeTestsList" class="test-grid compact-grid"></div>
+          </section>
+        </section>
+
+        <section id="testsView" class="page-view hidden">
+          <section class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-label">Tests</p>
+                <h2>Your test library</h2>
+              </div>
+              <button id="testsNewButton" class="primary-button" type="button">New test</button>
+            </div>
+            <div id="testsEmpty" class="empty-state">
+              <p>No tests saved yet. Click New test to add one.</p>
+            </div>
+            <div id="testsList" class="test-grid"></div>
+          </section>
+        </section>
+
+        <section id="setupView" class="page-view hidden">
+          <section class="panel setup-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-label">Test Setup</p>
+                <h2>Add or update a test</h2>
+              </div>
+              <div class="inline-actions">
+                <button id="loadSampleButton" class="ghost-button" type="button">Load sample</button>
+                <button id="setupBackButton" class="ghost-button" type="button">Back to tests</button>
+              </div>
+            </div>
+
+            <form id="importForm" class="setup-form">
+              <label class="field">
+                <span>Quiz file</span>
+                <input id="quizFileInput" class="file-input" type="file" accept=".json,application/json" />
+              </label>
+
+              <label class="field">
+                <span>Quiz JSON</span>
+                <textarea
+                  id="quizInput"
+                  rows="16"
+                  spellcheck="false"
+                  placeholder='{"title":"Biology Review","questions":[...]}'
+                ></textarea>
+              </label>
+
+              <div class="inline-actions">
+                <button class="primary-button" type="submit">Save test</button>
+                <button id="clearInputButton" class="ghost-button" type="button">Clear</button>
+              </div>
+              <p id="importMessage" class="status-message" aria-live="polite"></p>
+            </form>
+
+            <div class="format-note">
+              <h3>Expected format</h3>
+              <p>
+                Use JSON with a top-level <code>title</code>, optional <code>description</code>, and a
+                <code>questions</code> array. Each question needs <code>prompt</code>,
+                <code>options</code>, <code>correctIndex</code>, and <code>explanation</code>.
+              </p>
+            </div>
+          </section>
+        </section>
+
+        <section id="quizView" class="page-view hidden">
+          <section class="panel quiz-panel" aria-live="polite">
+            <div class="panel-heading">
+              <div>
+                <p class="section-label">Test Experience</p>
+                <h2 id="quizTitle">Quiz title</h2>
+              </div>
+              <div class="inline-actions">
+                <button id="quizBackButton" class="ghost-button" type="button">Back to tests</button>
+              </div>
+            </div>
+
+            <div class="quiz-layout">
+              <aside class="quiz-sidebar">
+                <div id="quizMeta" class="quiz-meta"></div>
+                <div class="scoreboard">
+                  <h3>Current results</h3>
+                  <div class="score-pills">
+                    <div class="score-pill score-pill-correct">
+                      <span class="score-label">Right</span>
+                      <strong id="correctCount">0</strong>
+                    </div>
+                    <div class="score-pill score-pill-wrong">
+                      <span class="score-label">Wrong</span>
+                      <strong id="wrongCount">0</strong>
+                    </div>
+                    <div class="score-pill">
+                      <span class="score-label">Remaining</span>
+                      <strong id="remainingCount">0</strong>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+
+              <div id="questionCard" class="question-card"></div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <template id="questionTemplate">
+      <div class="question-shell">
+        <div class="question-progress"></div>
+        <h3 class="question-prompt"></h3>
+        <div class="options-list"></div>
+        <div class="question-actions">
+          <button class="primary-button submit-answer-button" type="button">Check answer</button>
+        </div>
+        <div class="feedback-block hidden"></div>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
