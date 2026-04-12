@@ -11,6 +11,7 @@
   --success-soft: #e8fbf2;
   --danger: #cb4f4f;
   --danger-soft: #fff1f1;
+  --warning-soft: #fff7e1;
   --shadow: 0 1px 2px rgba(60, 64, 67, 0.12), 0 1px 3px 1px rgba(60, 64, 67, 0.08);
   --radius-lg: 20px;
   --radius-md: 12px;
@@ -422,6 +423,10 @@ code {
   background: var(--danger-soft);
 }
 
+.score-pill-skipped {
+  background: var(--warning-soft);
+}
+
 .score-label {
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -473,6 +478,7 @@ code {
 
 .question-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 

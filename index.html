@@ -151,6 +151,10 @@
                       <span class="score-label">Wrong</span>
                       <strong id="wrongCount">0</strong>
                     </div>
+                    <div class="score-pill score-pill-skipped">
+                      <span class="score-label">Skipped</span>
+                      <strong id="skippedCount">0</strong>
+                    </div>
                     <div class="score-pill">
                       <span class="score-label">Remaining</span>
                       <strong id="remainingCount">0</strong>
@@ -172,6 +176,8 @@
         <h3 class="question-prompt"></h3>
         <div class="options-list"></div>
         <div class="question-actions">
+          <button class="ghost-button previous-question-button" type="button">Previous question</button>
+          <button class="ghost-button skip-question-button" type="button">Skip question</button>
           <button class="primary-button submit-answer-button" type="button">Check answer</button>
         </div>
         <div class="feedback-block hidden"></div>

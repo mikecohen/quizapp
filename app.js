@@ -35,6 +35,7 @@ const state = {
   selectedOptionIndex: null,
   submitted: false,
   currentAnswers: [],
+  skippedQuestions: [],
   attemptRecorded: false
 };
 
@@ -66,6 +67,7 @@ const quizMeta = document.getElementById("quizMeta");
 const questionCard = document.getElementById("questionCard");
 const correctCount = document.getElementById("correctCount");
 const wrongCount = document.getElementById("wrongCount");
+const skippedCount = document.getElementById("skippedCount");
 const remainingCount = document.getElementById("remainingCount");
 const questionTemplate = document.getElementById("questionTemplate");
 
@@ -369,10 +371,23 @@ function beginQuiz(testId) {
   state.selectedOptionIndex = null;
   state.submitted = false;
   state.currentAnswers = [];
+  state.skippedQuestions = [];
   state.attemptRecorded = false;
   updateScoreboard();
   renderQuiz();
   setPage("quiz");
+}
+
+function syncCurrentQuestionState() {
+  const savedAnswer = state.currentAnswers[state.currentQuestionIndex];
+  state.selectedOptionIndex = savedAnswer?.selectedIndex ?? null;
+  state.submitted = Boolean(savedAnswer);
+}
+
+function goToQuestion(index) {
+  state.currentQuestionIndex = index;
+  syncCurrentQuestionState();
+  renderQuiz();
 }
 
 function renderQuiz() {
@@ -397,6 +412,8 @@ function renderQuiz() {
   const progress = fragment.querySelector(".question-progress");
   const prompt = fragment.querySelector(".question-prompt");
   const optionsList = fragment.querySelector(".options-list");
+  const previousButton = fragment.querySelector(".previous-question-button");
+  const skipButton = fragment.querySelector(".skip-question-button");
   const submitButton = fragment.querySelector(".submit-answer-button");
   const feedbackBlock = fragment.querySelector(".feedback-block");
 
@@ -437,6 +454,24 @@ function renderQuiz() {
       : "Next question"
     : "Check answer";
   submitButton.disabled = !state.submitted && state.selectedOptionIndex === null;
+  previousButton.disabled = state.currentQuestionIndex === 0;
+  skipButton.disabled = state.submitted;
+
+  previousButton.addEventListener("click", () => {
+    if (state.currentQuestionIndex === 0) {
+      return;
+    }
+
+    goToQuestion(state.currentQuestionIndex - 1);
+  });
+
+  skipButton.addEventListener("click", () => {
+    if (state.submitted) {
+      return;
+    }
+
+    skipCurrentQuestion();
+  });
 
   submitButton.addEventListener("click", () => {
     if (!state.submitted) {
@@ -444,10 +479,7 @@ function renderQuiz() {
       return;
     }
 
-    state.currentQuestionIndex += 1;
-    state.selectedOptionIndex = null;
-    state.submitted = false;
-    renderQuiz();
+    goToQuestion(state.currentQuestionIndex + 1);
   });
 
   if (state.submitted) {
@@ -471,6 +503,7 @@ function submitCurrentAnswer() {
   }
 
   state.submitted = true;
+  state.skippedQuestions[state.currentQuestionIndex] = false;
   state.currentAnswers[state.currentQuestionIndex] = {
     selectedIndex: state.selectedOptionIndex,
     isCorrect: state.selectedOptionIndex === question.correctIndex
@@ -479,11 +512,25 @@ function submitCurrentAnswer() {
   renderQuiz();
 }
 
+function skipCurrentQuestion() {
+  const test = getActiveTest();
+  const question = test?.questions[state.currentQuestionIndex];
+  if (!question || state.submitted) {
+    return;
+  }
+
+  state.skippedQuestions[state.currentQuestionIndex] = true;
+  state.selectedOptionIndex = null;
+  updateScoreboard();
+  goToQuestion(state.currentQuestionIndex + 1);
+}
+
 function updateScoreboard() {
   const test = getActiveTest();
   if (!test) {
     correctCount.textContent = "0";
     wrongCount.textContent = "0";
+    skippedCount.textContent = "0";
     remainingCount.textContent = "0";
     return;
   }
@@ -491,20 +538,25 @@ function updateScoreboard() {
   const answered = state.currentAnswers.filter(Boolean);
   const right = answered.filter((answer) => answer.isCorrect).length;
   const wrong = answered.filter((answer) => !answer.isCorrect).length;
-  const remaining = test.questions.length - answered.length;
+  const skipped = state.skippedQuestions.filter(Boolean).length;
+  const remaining = test.questions.length - answered.length - skipped;
 
   correctCount.textContent = String(right);
   wrongCount.textContent = String(wrong);
+  skippedCount.textContent = String(skipped);
   remainingCount.textContent = String(remaining);
 }
 
 async function renderSummary(test) {
   const correctAnswers = state.currentAnswers.filter((answer) => answer?.isCorrect).length;
   const wrongAnswers = state.currentAnswers.filter((answer) => answer && !answer.isCorrect).length;
+  const skippedAnswers = state.skippedQuestions.filter(Boolean).length;
   const score = Math.round((correctAnswers / test.questions.length) * 100);
   const attempt = {
     score,
     correctCount: correctAnswers,
+    wrongCount: wrongAnswers,
+    skippedCount: skippedAnswers,
     totalQuestions: test.questions.length,
     completedAt: new Date().toISOString()
   };
@@ -523,7 +575,7 @@ async function renderSummary(test) {
   summary.className = "summary-card";
   summary.innerHTML = `
     <div class="summary-score">${score}%</div>
-    <p>You answered ${correctAnswers} right and ${wrongAnswers} wrong out of ${test.questions.length} questions.</p>
+    <p>You answered ${correctAnswers} right, ${wrongAnswers} wrong, and skipped ${skippedAnswers} out of ${test.questions.length} questions.</p>
     <div class="summary-list"></div>
     <div class="inline-actions">
       <button class="primary-button" type="button" id="restartQuizButton">Try again</button>
@@ -534,11 +586,12 @@ async function renderSummary(test) {
   const summaryList = summary.querySelector(".summary-list");
   test.questions.forEach((question, index) => {
     const answer = state.currentAnswers[index];
+    const wasSkipped = state.skippedQuestions[index];
     const item = document.createElement("div");
     item.className = "summary-item";
     item.innerHTML = `
       <strong>${escapeHtml(question.prompt)}</strong>
-      <p>${answer?.isCorrect ? "Answered correctly." : `Review: ${escapeHtml(question.explanation)}`}</p>
+      <p>${answer?.isCorrect ? "Answered correctly." : wasSkipped ? `Skipped. Review: ${escapeHtml(question.explanation)}` : `Review: ${escapeHtml(question.explanation)}`}</p>
     `;
     summaryList.appendChild(item);
   });
