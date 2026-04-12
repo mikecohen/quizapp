@@ -16,7 +16,7 @@ if [[ -f "$PID_FILE" ]]; then
 fi
 
 cd "$ROOT_DIR"
-nohup python3 -m http.server "$PORT" >"$LOG_FILE" 2>&1 &
+nohup env PORT="$PORT" python3 server.py >"$LOG_FILE" 2>&1 &
 SERVER_PID=$!
 echo "$SERVER_PID" >"$PID_FILE"
 echo "MyQuiz started on http://localhost:$PORT"

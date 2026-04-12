@@ -2,6 +2,8 @@
 
 Local browser-based quiz app for students preparing for tests.
 
+Quizzes are stored as JSON files in `data/quizzes/`.
+
 ## Start
 
 ```bash
@@ -40,7 +42,7 @@ Notes:
 - `options` can contain any number of answer choices, but at least 2.
 - `correctIndex` is zero-based, so `1` means the second option is correct.
 - Saving a quiz with the same title updates that saved test.
-- Tests and attempt history are stored in the browser's `localStorage`.
+- Tests and attempt history are stored in JSON files under `data/quizzes/`.
 
 See [`sample-quiz.json`](sample-quiz.json) for a complete example.
 
@@ -50,3 +52,8 @@ See [`sample-quiz.json`](sample-quiz.json) for a complete example.
 - `Tests` is the test library page with saved tests and a `New test` button.
 - `Test Setup` is where you paste JSON or load a local `.json` file, then save or update tests.
 - `Test Experience` starts when you choose a saved test and shows live `Right`, `Wrong`, and `Remaining` counts while you answer.
+
+## Storage
+
+- Each saved quiz is written to `data/quizzes/<slug>.json`.
+- Quiz attempts are appended to the same file, so recent results persist across browser sessions.

@@ -391,6 +391,10 @@ code {
   background: #fff;
 }
 
+.quiz-meta {
+  white-space: pre-line;
+}
+
 .scoreboard {
   display: grid;
   gap: 12px;

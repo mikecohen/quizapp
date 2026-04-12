@@ -1,0 +1,556 @@
+{
+  "title": "Honors Biology: History of Life and Early Earth Review",
+  "description": "Comprehensive review covering Earth's origin, early atmosphere, dating methods, and the co-evolution of life and the environment.",
+  "questions": [
+    {
+      "prompt": "Based on the Big Bang theory, what primary observation did Edwin Hubble use to conclude that the universe is currently expanding?",
+      "options": [
+        "The presence of cosmic background radiation across the sky.",
+        "The consistent redshift in light from distant celestial galaxies.",
+        "The discovery of superdense matter concentrated in one mass.",
+        "The varying chemical composition of stars in different galaxies."
+      ],
+      "correctIndex": 1,
+      "explanation": "Hubble measured the wavelengths of light from distant galaxies and found they were consistently shifted toward the red end of the spectrum (redshift), indicating they are moving away from Earth[cite: 28, 31]."
+    },
+    {
+      "prompt": "If a geologist discovers a zircon crystal in a solidified magma layer, which dating method would be most precise for determining the absolute age of that rock?",
+      "options": [
+        "Measuring the ratio of carbon-14 to carbon-12 in the crystal.",
+        "Calculating the decay of potassium-40 into argon-40 gas.",
+        "Analyzing the decay of uranium-238 into lead-206 isotopes.",
+        "Comparing the crystal structure to known index fossil shapes."
+      ],
+      "correctIndex": 2,
+      "explanation": "Uranium is trapped in zircon crystals when magma solidifies, and its decay into lead provides ages with an error of less than 1% for very old materials[cite: 61, 62, 63]."
+    },
+    {
+      "prompt": "Which of the following best describes the transition from Earth’s initial molten state to the formation of its primary internal layers?",
+      "options": [
+        "Centrifugal force pushed heavier elements to the outer crustal layer.",
+        "Dense elements like iron sank while lighter elements rose to the top.",
+        "Rapid cooling caused all elements to freeze in a homogenous mixture.",
+        "Volcanic outgassing pulled the heaviest metals toward the atmosphere."
+      ],
+      "correctIndex": 1,
+      "explanation": "When Earth was liquid rock, heavier elements like iron and nickel sank toward the center, while lighter elements collected near the surface to form the crust[cite: 1609, 1610]."
+    },
+    {
+      "prompt": "A lab technician is trying to date a bone fragment thought to be 80,000 years old using Carbon-14. Why is this technique likely to fail?",
+      "options": [
+        "Carbon-14 only exists in volcanic rocks rather than organic remains.",
+        "The half-life of Carbon-14 is too short for samples older than 50,000 years.",
+        "Cosmic rays only began producing Carbon-14 within the last 10,000 years.",
+        "Nitrogen-14 interference becomes too high in samples of that specific age."
+      ],
+      "correctIndex": 1,
+      "explanation": "The half-life of carbon-14 is 5,730 years; after approximately 50,000 to 60,000 years, too little remains to be measured accurately[cite: 52, 54, 1099]."
+    },
+    {
+      "prompt": "What was the primary composition of Earth’s atmosphere during the Hadean Eon before the emergence of photosynthetic life?",
+      "options": [
+        "High concentrations of oxygen, nitrogen, and protective ozone.",
+        "Carbon dioxide, water vapor, nitrogen, and hydrogen cyanide.",
+        "Methane, ammonia, oxygen, and high levels of noble gases.",
+        "Pure hydrogen and helium left over from the original nebula."
+      ],
+      "correctIndex": 1,
+      "explanation": "The early atmosphere contained little or no oxygen and was mainly composed of carbon dioxide, water vapor, and nitrogen, along with toxic gases like hydrogen cyanide[cite: 1616, 1434]."
+    },
+    {
+      "prompt": "In the Miller-Urey experiment, what specific environmental condition was the 'electric spark' designed to simulate?",
+      "options": [
+        "The high heat produced by the decay of radioactive isotopes.",
+        "The intense ultraviolet radiation from the young, active sun.",
+        "Lightning storms providing energy for chemical reactions.",
+        "The kinetic energy of meteors colliding with the early crust."
+      ],
+      "correctIndex": 2,
+      "explanation": "Miller and Urey passed sparks of electricity through their gas mixture to simulate lightning on early Earth[cite: 1153]."
+    },
+    {
+      "prompt": "The discovery of Tiktaalik is considered a 'predicted' find in paleontology. What evidence did researchers use to select their dig site?",
+      "options": [
+        "They searched in volcanic regions where fossils are best preserved.",
+        "They looked for 375-million-year-old sedimentary rocks in arctic areas.",
+        "They used DNA analysis of modern fish to pinpoint the North Pole.",
+        "They followed a trail of index fossils found in South American caves."
+      ],
+      "correctIndex": 1,
+      "explanation": "Researchers chose the site by studying geology and geography, specifically looking for rocks of the right age (Devonian) where a transitional fossil might exist[cite: 1551, 1566]."
+    },
+    {
+      "prompt": "How does the theory of plate tectonics explain the movement of the Earth's lithospheric plates?",
+      "options": [
+        "The plates float on the liquid water of the deep hydrosphere.",
+        "Convection currents in the slowly-flowing mantle move the plates.",
+        "Changes in Earth's magnetic field pull the iron-rich crustal plates.",
+        "The weight of the atmosphere pushes the plates in a southern direction."
+      ],
+      "correctIndex": 1,
+      "explanation": "Plate tectonics explains plate movement as a result of convection currents in the mostly solid, yet slowly-flowing mantle[cite: 1435]."
+    },
+    {
+      "prompt": "Which eon is characterized by the first appearance of life and the initial release of free oxygen into the atmosphere?",
+      "options": [
+        "The Hadean Eon.",
+        "The Archean Eon.",
+        "The Proterozoic Eon.",
+        "The Phanerozoic Eon."
+      ],
+      "correctIndex": 1,
+      "explanation": "Life first appeared during the Archean Eon, which followed the Hadean Eon[cite: 1113]."
+    },
+    {
+      "prompt": "When using relative dating, what is the significance of finding the same index fossil in two widely separated rock layers?",
+      "options": [
+        "It indicates the two layers were formed by the same volcano.",
+        "It suggests that the two rock layers are likely similar in age.",
+        "It proves that the continents were once physically connected.",
+        "It shows that the environment in both areas was always desert."
+      ],
+      "correctIndex": 1,
+      "explanation": "If the same index fossil is found in two widely separated rock layers, the layers are probably similar in age[cite: 1080]."
+    },
+    {
+      "prompt": "Compare the 'RNA World' hypothesis to modern DNA-directed protein synthesis. What is the central claim of the RNA World hypothesis?",
+      "options": [
+        "RNA and DNA evolved simultaneously from simple amino acids.",
+        "Proteins were the first molecules to carry genetic information.",
+        "RNA existed and could self-replicate before DNA or proteins.",
+        "DNA was originally a waste product of RNA-based metabolism."
+      ],
+      "correctIndex": 2,
+      "explanation": "The RNA world hypothesis proposes that RNA existed before DNA and led to today's DNA-directed systems[cite: 1443, 1444]."
+    },
+    {
+      "prompt": "According to the geologic timescale, which of the following events occurred most recently?",
+      "options": [
+        "The appearance of the first multicellular animals.",
+        "The extinction of the dinosaurs at the end of the Mesozoic.",
+        "The evolution of the first eukaryotic cells.",
+        "The colonization of land by the first vascular plants."
+      ],
+      "correctIndex": 1,
+      "explanation": "On a 24-hour clock model of Earth's history, eukaryotic cells appear at 12:48 PM, land plants at 9:28 PM, and dinosaurs go extinct at 11:39 PM[cite: 1131, 1133, 1134]."
+    },
+    {
+      "prompt": "What anatomical feature of Tiktaalik provided evidence that it could support its weight against gravity, unlike typical fish?",
+      "options": [
+        "The presence of a streamlined body and a powerful dorsal fin.",
+        "Rib bones that attached to one another and a bony pelvis.",
+        "A lack of gills and the presence of fully developed lungs.",
+        "Lightweight, hollow bones similar to those found in birds."
+      ],
+      "correctIndex": 1,
+      "explanation": "Tiktaalik had rib bones that attached to one another and fins connected to the backbone by bony structures like a shoulder and pelvis[cite: 1557, 1559, 1560]."
+    },
+    {
+      "prompt": "In a lab simulation of early Earth, you exclude oxygen from the atmosphere. Why is this step historically accurate?",
+      "options": [
+        "Oxygen would have caused the early oceans to evaporate too quickly.",
+        "The early atmosphere was formed from volcanic gases, which lack O2.",
+        "Early life-forms required hydrogen cyanide as their primary energy.",
+        "Oxygen was only introduced to Earth by ice-rich comets later on."
+      ],
+      "correctIndex": 1,
+      "explanation": "Earth's early atmosphere was formed by gases escaping from the hot interior (volcanism) and contained little or no oxygen[cite: 84, 1615, 1616]."
+    },
+    {
+      "prompt": "Why are divisions of the geologic time scale, like periods and eras, not of equal length?",
+      "options": [
+        "The rate of radioactive decay changes depending on the era.",
+        "They are based on major changes in the fossil record and rock layers.",
+        "The Earth's rotation was much faster in the Precambrian than today.",
+        "Early geologists used a base-10 system that was later abandoned."
+      ],
+      "correctIndex": 1,
+      "explanation": "Geologists used rock-layer boundaries and major changes in the fossil record to determine divisions, leading to inconsistent lengths[cite: 1104, 1105, 1106]."
+    },
+    {
+      "prompt": "Which of the following describes the 'coevolution' of Earth's systems and life as seen in the color of the sky?",
+      "options": [
+        "The sky turned from blue to pink as carbon dioxide levels rose.",
+        "The sky turned from pinkish-orange to blue as life added oxygen.",
+        "The sky remained black until the atmosphere became thick with O2.",
+        "The sky changed from green to blue when the oceans first formed."
+      ],
+      "correctIndex": 1,
+      "explanation": "Early Earth's sky was pinkish-orange due to the atmosphere; as life established and added oxygen, the sky turned blue[cite: 1617, 1480]."
+    },
+    {
+      "prompt": "A researcher finds a layer of sedimentary rock sandwiched between two volcanic ash layers. How can they determine the age of fossils in the sediment?",
+      "options": [
+        "By using Carbon-14 on the volcanic ash to find its exact age.",
+        "By dating the volcanic layers and inferring the sediment's age.",
+        "By measuring the water content of the sedimentary rock layer.",
+        "By counting the number of silt grains per square centimeter."
+      ],
+      "correctIndex": 1,
+      "explanation": "Fossils in sedimentary rocks can be dated by establishing the ages of the surrounding (sandwiched) volcanic rocks using radiometric methods[cite: 58]."
+    },
+    {
+      "prompt": "Which of the following is a key difference between the Hadean and Archean Eons?",
+      "options": [
+        "The Hadean had oceans, while the Archean was entirely molten.",
+        "The Archean saw the first life, while the Hadean was pre-life.",
+        "The Hadean had an oxygen-rich atmosphere unlike the Archean.",
+        "The Archean occurred 15 billion years ago during the Big Bang."
+      ],
+      "correctIndex": 1,
+      "explanation": "The Hadean Eon (formation to 4 billion years ago) saw the first rocks, while the Archean Eon is when life first appeared[cite: 1112, 1113]."
+    },
+    {
+      "prompt": "What role did gravity play in the formation of the solar system according to the nebular hypothesis?",
+      "options": [
+        "It caused the central sun to explode and create the planets.",
+        "It pulled dust and gas together into a rotating, flattened disk.",
+        "It pushed the lighter gases toward the center to form the sun.",
+        "It prevented any heat from escaping the original nebular cloud."
+      ],
+      "correctIndex": 1,
+      "explanation": "Gravity pulled gases and particles together, causing the nebular cloud to contract into a rotating flattened disk[cite: 1595, 1599]."
+    },
+    {
+      "prompt": "If you are studying 'macroevolutionary patterns,' which of the following would you be investigating?",
+      "options": [
+        "The change in allele frequency within a single population.",
+        "The large-scale transition of species from water to land.",
+        "The chemical structure of a single RNA molecule in a lab.",
+        "The rate of mutations in a specific bacterial colony."
+      ],
+      "correctIndex": 1,
+      "explanation": "Macroevolutionary patterns refer to large-scale changes, such as the evolution of tetrapods from fish[cite: 1471, 1546]."
+    },
+    {
+      "prompt": "Which radioactive isotope is most useful for dating materials as old as the solar system (4.6 billion years)?",
+      "options": [
+        "Carbon-14",
+        "Potassium-40",
+        "Uranium-238",
+        "Nitrogen-14"
+      ],
+      "correctIndex": 2,
+      "explanation": "Uranium-lead dating systems are used for materials from thousands of years old to as old as the solar system[cite: 64]."
+    },
+    {
+      "prompt": "What distinguishes the lithosphere from other layers of the Earth's geosphere?",
+      "options": [
+        "It is the only layer composed entirely of liquid iron and nickel.",
+        "It consists of the crust and the outermost part of the mantle.",
+        "It is the thickest layer, extending 2900 kilometers deep.",
+        "It is the layer that generates the most radioactive heat."
+      ],
+      "correctIndex": 1,
+      "explanation": "The crust and outermost part of the mantle together form the lithosphere[cite: 1612]."
+    },
+    {
+      "prompt": "Based on the geologic time scale, during which era did the first mammals appear?",
+      "options": [
+        "Paleozoic Era",
+        "Mesozoic Era",
+        "Cenozoic Era",
+        "Precambrian Time"
+      ],
+      "correctIndex": 1,
+      "explanation": "The geologic timescale shows mammals appearing roughly 220 million years ago, which falls within the Mesozoic Era[cite: 46]."
+    },
+    {
+      "prompt": "How did the formation of the oceans affect the early Earth's hydrosphere?",
+      "options": [
+        "It removed all nitrogen from the atmosphere through rain.",
+        "It allowed water to collect in liquid form on the surface.",
+        "It caused the planet's core to cool and become solid iron.",
+        "It prevented radioactive decay from heating the interior."
+      ],
+      "correctIndex": 1,
+      "explanation": "As Earth cooled, water vapor condensed into rain and eventually collected to form oceans, creating the hydrosphere[cite: 1618, 1620]."
+    },
+    {
+      "prompt": "In the context of early Earth, what was the significance of 'stromatolites'?",
+      "options": [
+        "They are the oldest known volcanic rock structures on Earth.",
+        "They are structures formed by ancient cyanobacteria.",
+        "They are the crystals used for uranium-lead radiometric dating.",
+        "They are the first land animals to evolve from lobe-finned fish."
+      ],
+      "correctIndex": 1,
+      "explanation": "Stromatolites are structures formed by cyanobacteria, which are early prokaryotic life forms[cite: 1, 46]."
+    },
+    {
+      "prompt": "What is the primary source of the internal heat that drives plate tectonics today?",
+      "options": [
+        "Solar radiation absorbed by the Earth's thin outer crust.",
+        "Frictional heating from the tides caused by the moon's gravity.",
+        "The decay of radioactive elements like uranium and thorium.",
+        "Chemical reactions between seawater and the ocean floor."
+      ],
+      "correctIndex": 2,
+      "explanation": "The decay of radioactive elements like uranium, thorium, and potassium-40 is the primary source of heat within Earth[cite: 82]."
+    },
+    {
+      "prompt": "If a species evolves into several distinct species adapted to different niches, what is this process called?",
+      "options": [
+        "Convergent evolution",
+        "Adaptive radiation",
+        "Punctuated equilibrium",
+        "Coevolution"
+      ],
+      "correctIndex": 1,
+      "explanation": "Adaptive radiation is the process where a single species evolves into several or many distinct species[cite: 1338]."
+    },
+    {
+      "prompt": "What did the Miller-Urey experiment prove about the origin of life?",
+      "options": [
+        "That DNA could be synthesized in a lab within a few days.",
+        "That organic compounds could form under early Earth conditions.",
+        "That the first living cells were definitely formed in the ocean.",
+        "That oxygen was necessary for the first metabolic pathways."
+      ],
+      "correctIndex": 1,
+      "explanation": "The experiment suggested that organic compounds necessary for life could have developed from simpler compounds on a primitive Earth[cite: 1442]."
+    },
+    {
+      "prompt": "Why is the fossil record often described as 'incomplete' by scientists?",
+      "options": [
+        "Most organisms decay completely without leaving any remains.",
+        "The Earth's core has melted most of the fossils from the past.",
+        "Only marine organisms have the ability to form fossils in rock.",
+        "Fossils can only form in areas with high levels of volcanic ash."
+      ],
+      "correctIndex": 0,
+      "explanation": "There are no witnesses and many events are difficult to answer because direct evidence like fossils is rare[cite: 5, 1441]."
+    },
+    {
+      "prompt": "Which of the following describes the relationship between 'eons', 'eras', and 'periods'?",
+      "options": [
+        "Periods are the largest, subdivided into eons and then eras.",
+        "Eons are the largest, subdivided into eras and then periods.",
+        "Eras are the largest, subdivided into periods and then eons.",
+        "All three terms refer to the same length of 100 million years."
+      ],
+      "correctIndex": 1,
+      "explanation": "The major divisions of the geologic time scale are eons, which are subdivided into eras, and then periods[cite: 1102, 1116, 1117]."
+    },
+    {
+      "prompt": "How did the cooling of the Earth affect the formation of the atmosphere?",
+      "options": [
+        "It caused oxygen to be trapped in the solid iron core.",
+        "It allowed gases from the interior to form a primitive atmosphere.",
+        "It stopped all volcanic activity and atmospheric growth.",
+        "It turned the atmosphere from a liquid into a gaseous state."
+      ],
+      "correctIndex": 1,
+      "explanation": "As the outer crust cooled, gases escaping from the hot interior formed a primitive atmosphere[cite: 84]."
+    },
+    {
+      "prompt": "What evidence indicates that the Moon formed at about the same time as the Earth?",
+      "options": [
+        "Analysis of lunar rocks and comparison with Earth's oldest rocks.",
+        "The Moon's atmosphere is identical to Earth's early atmosphere.",
+        "The presence of liquid water oceans on the Moon's dark side.",
+        "The Moon's redshift matches the redshift of the Earth's sun."
+      ],
+      "correctIndex": 0,
+      "explanation": "Analysis of rocks from the Moon and meteorites confirms the estimate that both formed about 4.6 billion years ago[cite: 40, 41, 42]."
+    },
+    {
+      "prompt": "Why did the sky of early Earth appear pinkish-orange instead of the blue we see today?",
+      "options": [
+        "The sun was much cooler and emitted only red light waves.",
+        "The lack of oxygen and presence of gases like CO2 and nitrogen.",
+        "The oceans had not yet formed to reflect the blue color.",
+        "Massive amounts of dust from constant meteor impacts."
+      ],
+      "correctIndex": 1,
+      "explanation": "Because of gases like carbon dioxide, nitrogen, and hydrogen cyanide, and the lack of oxygen, the sky was probably pinkish-orange[cite: 1616, 1617]."
+    },
+    {
+      "prompt": "Compare 'background extinction' and 'mass extinction'. What distinguishes a mass extinction?",
+      "options": [
+        "It only affects a single species in a very small area.",
+        "It occurs slowly over billions of years of geologic time.",
+        "It affects many species across the entire planet quickly.",
+        "It is caused only by human activities like deforestation."
+      ],
+      "correctIndex": 2,
+      "explanation": "Mass extinctions are macroevolutionary patterns where many types of living things become extinct at the same time[cite: 1331, 1471]."
+    },
+    {
+      "prompt": "In the context of evolution, what is 'convergent evolution'?",
+      "options": [
+        "Two species evolving together in a mutualistic relationship.",
+        "Unrelated organisms evolving similar traits in similar environments.",
+        "One species splitting into many new species very quickly.",
+        "The process of a species becoming extinct due to competition."
+      ],
+      "correctIndex": 1,
+      "explanation": "The evolution of similar characteristics in unrelated organisms is known as convergent evolution[cite: 1351]."
+    },
+    {
+      "prompt": "What is the 'half-life' of a radioactive isotope?",
+      "options": [
+        "The total time it takes for an entire sample to disappear.",
+        "The time required for half of the atoms in a sample to decay.",
+        "The age at which a fossil becomes too old to be dated.",
+        "The amount of lead produced by one gram of uranium."
+      ],
+      "correctIndex": 1,
+      "explanation": "Half-life is the time it takes for half of the radioactive atoms in a sample to decay into stable atoms[cite: 52, 1476]."
+    },
+    {
+      "prompt": "Which of the following provided the first evidence of 'humanlike apes' in the geologic record?",
+      "options": [
+        "Cenozoic Era, approximately 7 million years ago.",
+        "Mesozoic Era, during the time of the dinosaurs.",
+        "Paleozoic Era, alongside the first land plants.",
+        "Precambrian Time, before the first eukaryotes."
+      ],
+      "correctIndex": 0,
+      "explanation": "The geologic timescale places the first evidence of humanlike apes at 7-5 million years ago in the Cenozoic Era[cite: 46]."
+    },
+    {
+      "prompt": "How did the first prokaryotes change the Earth's environment roughly 3.5 billion years ago?",
+      "options": [
+        "They cooled the planet by absorbing all the internal heat.",
+        "They began releasing free oxygen into the atmosphere.",
+        "They created the first solid rocks through decomposition.",
+        "They removed all the nitrogen to create a vacuum."
+      ],
+      "correctIndex": 1,
+      "explanation": "Prokaryotes began releasing free oxygen into the atmosphere approximately 3.5 billion years ago[cite: 46]."
+    },
+    {
+      "prompt": "What geological unit is formed by the combination of the crust and the outermost mantle?",
+      "options": [
+        "The Biosphere",
+        "The Lithosphere",
+        "The Hydrosphere",
+        "The Core"
+      ],
+      "correctIndex": 1,
+      "explanation": "The crust and outermost part of the mantle together form a geologic unit called the lithosphere[cite: 1612]."
+    },
+    {
+      "prompt": "What is a major limitation of using relative dating for fossils?",
+      "options": [
+        "It cannot provide a specific age in years for the fossil.",
+        "It only works for fossils found in volcanic ash layers.",
+        "It requires the presence of radioactive uranium-238.",
+        "It can only be used for fossils of marine organisms."
+      ],
+      "correctIndex": 0,
+      "explanation": "Relative dating allows paleontologists to determine whether a fossil is older or younger than others, but not its absolute age in years[cite: 1101, 1440]."
+    },
+    {
+      "prompt": "According to the case study, why was Tiktaalik called a 'fish-a-pod'?",
+      "options": [
+        "It had the scales of a fish but the heart of an amphibian.",
+        "It represented a stage between fish and four-legged animals.",
+        "It was a fish that could fly using modified pectoral fins.",
+        "It lived in the ocean but laid eggs on the sandy beaches."
+      ],
+      "correctIndex": 1,
+      "explanation": "It was dubbed 'fish-a-pod' to emphasize it represented a stage between lobe-finned fishes and the first land-dwelling amphibians[cite: 1564]."
+    },
+    {
+      "prompt": "Which of the following is considered 'absolute dating'?",
+      "options": [
+        "Comparing the position of two rock layers.",
+        "Using the decay of radioactive isotopes.",
+        "Identifying the presence of index fossils.",
+        "Observing the color of the sedimentary rock."
+      ],
+      "correctIndex": 1,
+      "explanation": "Radiometric dating (using isotopes) is a form of absolute dating used to assign specific ages to rock layers[cite: 1101, 1109]."
+    },
+    {
+      "prompt": "In the 24-hour clock model of Earth's history, at what time did the first living cells appear?",
+      "options": [
+        "12:00 AM (Midnight)",
+        "5:30 AM",
+        "12:48 PM",
+        "11:58 PM"
+      ],
+      "correctIndex": 1,
+      "explanation": "The first living cells are estimated to have appeared at approximately 5:30 AM on the 24-hour model[cite: 1132]."
+    },
+    {
+      "prompt": "Which gas, common in the modern atmosphere, was largely absent from the early Earth's atmosphere?",
+      "options": [
+        "Nitrogen",
+        "Carbon Dioxide",
+        "Oxygen",
+        "Water Vapor"
+      ],
+      "correctIndex": 2,
+      "explanation": "Earth's early atmosphere contained little or no oxygen[cite: 1616, 1433]."
+    },
+    {
+      "prompt": "What are 'transuranium elements' as described in the context of nuclear reactions?",
+      "options": [
+        "Elements that decay into uranium over billions of years.",
+        "Elements with atomic numbers greater than 92.",
+        "Naturally occurring elements found in zircon crystals.",
+        "Isotopes of carbon used for dating organic remains."
+      ],
+      "correctIndex": 1,
+      "explanation": "Elements with atomic numbers greater than 92 are called transuranium elements [Source: Unit 12 - Radioactivity]."
+    },
+    {
+      "prompt": "What is the primary characteristic of the 'Phanerozoic Eon'?",
+      "options": [
+        "It is the eon during which the first rocks formed.",
+        "It began at the end of the Proterozoic and continues today.",
+        "It covers 90 percent of the Earth's entire history.",
+        "It is the time when the atmosphere had no oxygen."
+      ],
+      "correctIndex": 1,
+      "explanation": "The Phanerozoic Eon began at the end of the Proterozoic and continues to the present[cite: 1115, 1116]."
+    },
+    {
+      "prompt": "How does 'weathering' relate to the fossil record?",
+      "options": [
+        "It is the process that creates the bones of animals.",
+        "It can break down or chemically change rocks and fossils.",
+        "It is required to turn liquid magma into solid crust.",
+        "It is the energy source used for radiometric dating."
+      ],
+      "correctIndex": 1,
+      "explanation": "Interactions between Earth's systems can break down or chemically change rocks (weathering) at the surface[cite: 1436]."
+    },
+    {
+      "prompt": "What does the 'endosymbiotic theory' explain?",
+      "options": [
+        "The origin of the first organic molecules like RNA.",
+        "The origin of complex features in eukaryotic cells.",
+        "The process of plate tectonics moving the continents.",
+        "The way stars and galaxies form from a nebular cloud."
+      ],
+      "correctIndex": 1,
+      "explanation": "Evidence from molecular biology supports the theory that complex features of eukaryotic cells evolved through endosymbiosis[cite: 1445, 1481]."
+    },
+    {
+      "prompt": "Which of the following is a 'macroevolutionary pattern'?",
+      "options": [
+        "Adaptive radiation",
+        "Photosynthesis",
+        "Radioactive decay",
+        "Redshift of light"
+      ],
+      "correctIndex": 0,
+      "explanation": "Adaptive radiation is listed as a macroevolutionary pattern[cite: 1471]."
+    },
+    {
+      "prompt": "If you are using Potassium-40 to date a rock, what are you measuring?",
+      "options": [
+        "The amount of nitrogen trapped in the zircon crystals.",
+        "The ratio of Potassium-40 to its decay product, Argon-40.",
+        "The number of half-lives that have passed since 1950.",
+        "The temperature of the magma when it first solidified."
+      ],
+      "correctIndex": 1,
+      "explanation": "Potassium-argon dating methods measure the decay of Potassium-40 (half-life 1.3 billion years) to date volcanic rocks[cite: 57]."
+    }
+  ]
+}

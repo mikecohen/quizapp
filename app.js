@@ -1,4 +1,3 @@
-const STORAGE_KEY = "myquiz.tests.v1";
 const SAMPLE_QUIZ = {
   title: "Cell Biology Review",
   description: "A short practice set covering membranes, ATP, and organelles.",
@@ -29,7 +28,7 @@ const SAMPLE_QUIZ = {
 };
 
 const state = {
-  tests: loadTests(),
+  tests: [],
   currentPage: "home",
   activeTestId: null,
   currentQuestionIndex: 0,
@@ -70,59 +69,81 @@ const wrongCount = document.getElementById("wrongCount");
 const remainingCount = document.getElementById("remainingCount");
 const questionTemplate = document.getElementById("questionTemplate");
 
-renderApp();
-setPage("home");
-
-navHomeButton.addEventListener("click", () => setPage("home"));
-navTestsButton.addEventListener("click", () => setPage("tests"));
-homeNewTestButton.addEventListener("click", openSetupForNewTest);
-homeManageTestsButton.addEventListener("click", () => setPage("tests"));
-testsNewButton.addEventListener("click", openSetupForNewTest);
-setupBackButton.addEventListener("click", () => setPage("tests"));
-quizBackButton.addEventListener("click", () => setPage("tests"));
-
-loadSampleButton.addEventListener("click", () => {
-  quizInput.value = JSON.stringify(SAMPLE_QUIZ, null, 2);
-  quizFileInput.value = "";
-  setImportMessage("Sample quiz loaded into the editor.", "success");
+init().catch((error) => {
+  setImportMessage(`Failed to load tests: ${error.message}`, "error");
 });
 
-clearInputButton.addEventListener("click", () => {
-  quizInput.value = "";
-  quizFileInput.value = "";
-  setImportMessage("", "");
-});
+async function init() {
+  bindEvents();
+  await refreshTests();
+  setPage("home");
+}
 
-quizFileInput.addEventListener("change", async (event) => {
-  const [file] = event.target.files ?? [];
-  if (!file) {
-    return;
-  }
+function bindEvents() {
+  navHomeButton.addEventListener("click", () => setPage("home"));
+  navTestsButton.addEventListener("click", () => setPage("tests"));
+  homeNewTestButton.addEventListener("click", openSetupForNewTest);
+  homeManageTestsButton.addEventListener("click", () => setPage("tests"));
+  testsNewButton.addEventListener("click", openSetupForNewTest);
+  setupBackButton.addEventListener("click", () => setPage("tests"));
+  quizBackButton.addEventListener("click", () => setPage("tests"));
 
-  try {
-    const text = await file.text();
-    JSON.parse(text);
-    quizInput.value = text;
-    setImportMessage(`Loaded "${file.name}". Review it below, then save the test.`, "success");
-  } catch {
+  loadSampleButton.addEventListener("click", () => {
+    quizInput.value = JSON.stringify(SAMPLE_QUIZ, null, 2);
     quizFileInput.value = "";
-    setImportMessage("That file could not be read as valid JSON.", "error");
-  }
-});
+    setImportMessage("Sample quiz loaded into the editor.", "success");
+  });
 
-importForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  try {
-    const savedTest = saveQuizFromText(quizInput.value);
+  clearInputButton.addEventListener("click", () => {
+    quizInput.value = "";
     quizFileInput.value = "";
-    setImportMessage(`Saved "${savedTest.title}".`, "success");
-    renderApp();
-    setPage("tests");
-  } catch (error) {
-    setImportMessage(error.message, "error");
-  }
-});
+    setImportMessage("", "");
+  });
+
+  quizFileInput.addEventListener("change", async (event) => {
+    const [file] = event.target.files ?? [];
+    if (!file) {
+      return;
+    }
+
+    try {
+      const text = await file.text();
+      JSON.parse(text);
+      quizInput.value = text;
+      setImportMessage(`Loaded "${file.name}". Review it below, then save the test.`, "success");
+    } catch {
+      quizFileInput.value = "";
+      setImportMessage("That file could not be read as valid JSON.", "error");
+    }
+  });
+
+  importForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    try {
+      const parsed = JSON.parse(quizInput.value);
+      const normalized = validateQuiz(parsed);
+      const existing = state.tests.find((test) => test.slug === normalized.slug);
+      const payload = {
+        ...normalized,
+        id: existing?.id
+      };
+
+      const response = await fetchJson("/api/tests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      quizFileInput.value = "";
+      setImportMessage(`Saved "${response.test.title}" to data/quizzes.`, "success");
+      await refreshTests();
+      setPage("tests");
+    } catch (error) {
+      setImportMessage(error.message, "error");
+    }
+  });
+}
 
 function openSetupForNewTest() {
   quizInput.value = "";
@@ -131,38 +152,19 @@ function openSetupForNewTest() {
   setPage("setup");
 }
 
-function loadTests() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
+async function refreshTests() {
+  const response = await fetchJson("/api/tests");
+  state.tests = response.tests ?? [];
+  renderApp();
+}
+
+async function fetchJson(url, options = {}) {
+  const response = await fetch(url, options);
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(payload.error || "Request failed.");
   }
-}
-
-function persistTests() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.tests));
-}
-
-function saveQuizFromText(text) {
-  const parsed = JSON.parse(text);
-  const normalized = validateQuiz(parsed);
-  const existing = state.tests.find((test) => test.slug === normalized.slug);
-  const savedTest = {
-    ...normalized,
-    id: existing?.id ?? crypto.randomUUID(),
-    createdAt: existing?.createdAt ?? new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    attempts: existing?.attempts ?? []
-  };
-
-  state.tests = [
-    ...state.tests.filter((test) => test.id !== savedTest.id),
-    savedTest
-  ].sort((left, right) => left.title.localeCompare(right.title));
-
-  persistTests();
-  return savedTest;
+  return payload;
 }
 
 function validateQuiz(input) {
@@ -234,14 +236,6 @@ function setPage(page) {
   quizView.classList.toggle("hidden", page !== "quiz");
   navHomeButton.classList.toggle("active", page === "home");
   navTestsButton.classList.toggle("active", page === "tests");
-
-  const target = (
-    page === "home" ? homeView :
-    page === "tests" ? testsView :
-    page === "setup" ? setupView :
-    quizView
-  );
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderApp() {
@@ -269,8 +263,8 @@ function renderTestsPage() {
 }
 
 function buildTestCard(test, context) {
-  const latestAttempt = test.attempts.at(-1);
-  const bestAttempt = test.attempts.reduce(
+  const latestAttempt = test.attempts?.at(-1);
+  const bestAttempt = (test.attempts ?? []).reduce(
     (best, attempt) => (attempt.score > (best?.score ?? -1) ? attempt : best),
     null
   );
@@ -284,7 +278,7 @@ function buildTestCard(test, context) {
     </div>
     <div class="test-stats">
       <span class="stat-pill">${test.questions.length} questions</span>
-      <span class="stat-pill">${test.attempts.length} attempt${test.attempts.length === 1 ? "" : "s"}</span>
+      <span class="stat-pill">${(test.attempts ?? []).length} attempt${(test.attempts ?? []).length === 1 ? "" : "s"}</span>
       <span class="stat-pill">Best: ${bestAttempt ? `${bestAttempt.score}%` : "N/A"}</span>
       <span class="stat-pill">Latest: ${latestAttempt ? `${latestAttempt.score}%` : "N/A"}</span>
     </div>
@@ -304,7 +298,7 @@ function buildTestCard(test, context) {
 
 function renderRecentResults() {
   const attempts = state.tests
-    .flatMap((test) => test.attempts.map((attempt) => ({ testTitle: test.title, attempt })))
+    .flatMap((test) => (test.attempts ?? []).map((attempt) => ({ testTitle: test.title, attempt })))
     .sort((left, right) => new Date(right.attempt.completedAt) - new Date(left.attempt.completedAt))
     .slice(0, 5);
 
@@ -331,7 +325,7 @@ function getRecentTests(limit) {
     .slice(0, limit);
 }
 
-function handleTestAction(event) {
+async function handleTestAction(event) {
   const { action, id } = event.currentTarget.dataset;
   const test = state.tests.find((entry) => entry.id === id);
   if (!test) {
@@ -354,19 +348,18 @@ function handleTestAction(event) {
       2
     );
     quizFileInput.value = "";
-    setImportMessage(`Loaded "${test.title}" into setup. Saving will update this test.`, "success");
+    setImportMessage(`Loaded "${test.title}" into setup. Saving will update the file in data/quizzes.`, "success");
     setPage("setup");
     return;
   }
 
   if (action === "delete") {
-    state.tests = state.tests.filter((entry) => entry.id !== id);
+    await fetchJson(`/api/tests/${encodeURIComponent(test.slug)}`, { method: "DELETE" });
     if (state.activeTestId === id) {
       state.activeTestId = null;
       questionCard.innerHTML = "";
     }
-    persistTests();
-    renderApp();
+    await refreshTests();
   }
 }
 
@@ -392,10 +385,10 @@ function renderQuiz() {
   updateScoreboard();
   const question = test.questions[state.currentQuestionIndex];
   quizTitle.textContent = test.title;
-  quizMeta.textContent = test.description || `${test.questions.length} total questions`;
+  quizMeta.textContent = `${test.description || "No description provided."}\nStored in data/quizzes/${test.slug}.json`;
 
   if (!question) {
-    renderSummary(test);
+    void renderSummary(test);
     return;
   }
 
@@ -505,7 +498,7 @@ function updateScoreboard() {
   remainingCount.textContent = String(remaining);
 }
 
-function renderSummary(test) {
+async function renderSummary(test) {
   const correctAnswers = state.currentAnswers.filter((answer) => answer?.isCorrect).length;
   const wrongAnswers = state.currentAnswers.filter((answer) => answer && !answer.isCorrect).length;
   const score = Math.round((correctAnswers / test.questions.length) * 100);
@@ -516,12 +509,14 @@ function renderSummary(test) {
     completedAt: new Date().toISOString()
   };
 
-  const storedTest = state.tests.find((entry) => entry.id === test.id);
-  if (!state.attemptRecorded && storedTest) {
-    storedTest.attempts.push(attempt);
+  if (!state.attemptRecorded) {
+    await fetchJson(`/api/tests/${encodeURIComponent(test.slug)}/attempts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(attempt)
+    });
     state.attemptRecorded = true;
-    persistTests();
-    renderApp();
+    await refreshTests();
   }
 
   const summary = document.createElement("div");

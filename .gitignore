@@ -1,6 +1,8 @@
 .DS_Store
 .myquiz.log
 .myquiz.pid
+__pycache__/
+data/quizzes/
 node_modules/
 dist/
 build/
