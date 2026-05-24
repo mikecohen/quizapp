@@ -69,7 +69,13 @@
                 <p class="section-label">Tests</p>
                 <h2>Your test library</h2>
               </div>
-              <button id="testsNewButton" class="primary-button" type="button">New test</button>
+              <div class="inline-actions tests-toolbar">
+                <label class="filter-toggle" for="hideCompletedCheckbox">
+                  <input id="hideCompletedCheckbox" type="checkbox" />
+                  <span>Hide completed</span>
+                </label>
+                <button id="testsNewButton" class="primary-button" type="button">New test</button>
+              </div>
             </div>
             <div id="testsEmpty" class="empty-state">
               <p>No tests saved yet. Click New test to add one.</p>

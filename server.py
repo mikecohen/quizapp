@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from typing import Optional
 from urllib.parse import unquote, urlparse
 
 
@@ -23,13 +24,28 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def parse_iso(value: Optional[str]) -> datetime:
+    if not value:
+        return datetime.min.replace(tzinfo=timezone.utc)
+    try:
+        return datetime.fromisoformat(value)
+    except ValueError:
+        return datetime.min.replace(tzinfo=timezone.utc)
+
+
 def list_tests() -> list[dict]:
     tests = []
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    for path in sorted(DATA_DIR.glob("*.json")):
-      with path.open("r", encoding="utf-8") as handle:
-        tests.append(json.load(handle))
-    tests.sort(key=lambda item: item.get("title", "").lower())
+    for path in DATA_DIR.glob("*.json"):
+        with path.open("r", encoding="utf-8") as handle:
+            tests.append(json.load(handle))
+    tests.sort(
+        key=lambda item: (
+            parse_iso(item.get("createdAt")),
+            parse_iso(item.get("updatedAt")),
+            item.get("title", "").lower(),
+        )
+    )
     return tests
 
 

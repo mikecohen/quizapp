@@ -29,6 +29,7 @@ const SAMPLE_QUIZ = {
 
 const state = {
   tests: [],
+  hideCompletedTests: false,
   currentPage: "home",
   activeTestId: null,
   currentQuestionIndex: 0,
@@ -60,6 +61,7 @@ const homeTestsEmpty = document.getElementById("homeTestsEmpty");
 const homeTestsList = document.getElementById("homeTestsList");
 const testsEmpty = document.getElementById("testsEmpty");
 const testsList = document.getElementById("testsList");
+const hideCompletedCheckbox = document.getElementById("hideCompletedCheckbox");
 const recentResultsEmpty = document.getElementById("recentResultsEmpty");
 const recentResultsList = document.getElementById("recentResultsList");
 const quizTitle = document.getElementById("quizTitle");
@@ -89,6 +91,10 @@ function bindEvents() {
   testsNewButton.addEventListener("click", openSetupForNewTest);
   setupBackButton.addEventListener("click", () => setPage("tests"));
   quizBackButton.addEventListener("click", () => setPage("tests"));
+  hideCompletedCheckbox.addEventListener("change", (event) => {
+    state.hideCompletedTests = event.currentTarget.checked;
+    renderTestsPage();
+  });
 
   loadSampleButton.addEventListener("click", () => {
     quizInput.value = JSON.stringify(SAMPLE_QUIZ, null, 2);
@@ -256,10 +262,16 @@ function renderHomeTests() {
 }
 
 function renderTestsPage() {
-  testsEmpty.classList.toggle("hidden", state.tests.length > 0);
+  const visibleTests = getVisibleTests();
+  const emptyMessage = state.tests.length === 0
+    ? "No tests saved yet. Click New test to add one."
+    : "No incomplete tests match this filter.";
+
+  testsEmpty.querySelector("p").textContent = emptyMessage;
+  testsEmpty.classList.toggle("hidden", visibleTests.length > 0);
   testsList.innerHTML = "";
 
-  state.tests.forEach((test) => {
+  visibleTests.forEach((test) => {
     testsList.appendChild(buildTestCard(test, "tests"));
   });
 }
@@ -325,6 +337,14 @@ function getRecentTests(limit) {
   return [...state.tests]
     .sort((left, right) => new Date(right.updatedAt) - new Date(left.updatedAt))
     .slice(0, limit);
+}
+
+function getVisibleTests() {
+  if (!state.hideCompletedTests) {
+    return state.tests;
+  }
+
+  return state.tests.filter((test) => (test.attempts ?? []).length === 0);
 }
 
 async function handleTestAction(event) {
